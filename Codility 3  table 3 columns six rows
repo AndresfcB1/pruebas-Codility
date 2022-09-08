@@ -1,0 +1,114 @@
+HTML
+
+<table><tbody>
+    <tr>
+        <td>Donna</td>
+        <td>2016-10-01</td>
+        <td></td>
+    </tr>
+    <tr >
+        <td>Nansen</td>
+        <td>2016-11-05</td>
+        <td>2016-11-14</td>
+    </tr>
+    <tr >
+        <td>Peppe</td>
+        <td>2016-11-05</td>
+        <td>2016-11-14</td>
+    </tr>
+    <tr>
+        <td>J'Sira</td>
+        <td>2012-02-28</td>
+        <td>2012-03-14</td>
+    </tr>
+    <tr>
+        <td>Billie</td>
+        <td>2015-08-14</td>
+        <td>2015-10-09</td>
+    </tr>
+    <tr>
+        <td>Peyton</td>
+        <td>2015-08-14</td>
+        <td>2015-10-09</td>
+    </tr>
+</tbody></table>
+
+JS
+
+
+const today = '2016-11-30';
+
+
+solution(today,14)
+
+function solution(today, limit) {
+  var comienzo=new Date(today)
+ 
+  
+  var TuFecha = new Date(today);
+  
+  //dias a sumar
+  var dias = limit;
+  
+  //nueva fecha sumada
+  TuFecha.setDate(TuFecha.getDate() + dias);
+  //formato de salida para la fecha
+  var resultado =  TuFecha.getFullYear()+','+
+    (TuFecha.getMonth() + 1) + ','  + TuFecha.getDate() ;
+  
+var daysBetween = function(startDate, LimitDate) {
+    for(var arr=[],dt=new Date(startDate); dt<=new Date(LimitDate); dt.setDate(dt.getDate()+1)){
+        arr.push(new Date(dt));
+    }
+    return arr;
+};  
+
+  var getDaysBetween = daysBetween(today,resultado);
+  
+  console.log(getDaysBetween)
+ var arr1=[]
+var fechas= document.getElementsByTagName("tr")
+for(var i=0; i<fechas.length; i++)
+  {
+arr1.push(fechas[i].textContent.split("").filter(el => el != ' ').join("").replace('\n','').split("\n"))
+  }
+ 
+  console.log(arr1)
+  
+  
+  for (var i=0; i<arr1.length;i++)
+    {
+      var tuFecha1=new Date(arr1[i][1])
+      var tuFechaLimite= new Date(arr1[i][1])
+      var tuFecha2=new Date(arr1[i][2])
+      
+       tuFechaLimite.setDate(tuFechaLimite.getDate() + limit);
+  //formato de salida para la fecha
+  var resultadoFechaLimite =  tuFechaLimite.getFullYear()+','+(tuFechaLimite.getMonth() + 1) + ','  + tuFechaLimite.getDate() ;
+      
+      
+      var fechaBorrowed=tuFecha1.getFullYear()+','+
+    (tuFecha1.getMonth() + 1) + ','  + tuFecha1.getDate();
+      
+      console.log('fechaprestado '+fechaBorrowed)
+      
+     
+  //formato de salida para la fecha
+  var fechaRegresado =  tuFecha2.getFullYear()+','+
+    (tuFecha2.getMonth() + 1) + ','  + tuFecha2.getDate();
+      console.log('fecha regresado='+fechaRegresado)
+       var fechas2= document.getElementsByTagName("tr");
+   if(arr1[i][2]=='')
+     {
+    
+     fechas2[i].style.background = "red";
+       console.log('rojo');
+     }
+      else if(new Date(fechaRegresado)>new Date(resultadoFechaLimite))
+        {
+            fechas2[i].style.background = "red";
+           console.log('rojo2');
+        }
+      
+    }
+}
